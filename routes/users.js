@@ -1,9 +1,10 @@
 var express = require('express');
+const isAutenticated = require('../isAutenticated');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.get('/', isAutenticated, function(req, res, next) {
+  res.json(req.user);
 });
 
 module.exports = router;
