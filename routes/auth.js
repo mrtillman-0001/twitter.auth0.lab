@@ -31,22 +31,22 @@ router.get('/callback', function (req, res, next) {
 // Perform session logout and redirect to homepage
 router.get('/logout', (req, res) => {
   req.logout();
+  res.redirect("/");
+  // var returnTo = req.protocol + '://' + req.hostname;
+  // var port = req.connection.localPort;
+  // if (port !== undefined && port !== 80 && port !== 443) {
+  //   returnTo += ':' + port;
+  // }
+  // var logoutURL = new url.URL(
+  //   util.format('https://%s/v2/logout', process.env.AUTH0_DOMAIN)
+  // );
+  // var searchString = querystring.stringify({
+  //   client_id: process.env.AUTH0_CLIENT_ID,
+  //   returnTo: returnTo
+  // });
+  // logoutURL.search = searchString;
 
-  var returnTo = req.protocol + '://' + req.hostname;
-  var port = req.connection.localPort;
-  if (port !== undefined && port !== 80 && port !== 443) {
-    returnTo += ':' + port;
-  }
-  var logoutURL = new url.URL(
-    util.format('https://%s/v2/logout', process.env.AUTH0_DOMAIN)
-  );
-  var searchString = querystring.stringify({
-    client_id: process.env.AUTH0_CLIENT_ID,
-    returnTo: returnTo
-  });
-  logoutURL.search = searchString;
-
-  res.redirect(logoutURL);
+  // res.redirect(logoutURL);
 });
 
 module.exports = router;
