@@ -2,20 +2,19 @@ module.exports.configurePassport = (app) => {
 
   // Load Passport
   var passport = require('passport');
-  var Auth0Strategy = require('passport-auth0');
+  var TwitterStrategy = require('passport-twitter');
 
   // Configure Passport to use Auth0
-  var strategy = new Auth0Strategy(
+  var strategy = new TwitterStrategy(
     {
-      domain: process.env.AUTH0_DOMAIN,
-      clientID: process.env.AUTH0_CLIENT_ID,
-      clientSecret: process.env.AUTH0_CLIENT_SECRET,
-      callbackURL:
-        process.env.AUTH0_CALLBACK_URL
+      userAuthorizationURL: 'https://api.twitter.com/oauth/authorize',
+      consumerKey: process.env.TWITTER_CONSUMER_KEY,
+      consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+      callbackURL: process.env.TWITTER_CALLBACK_URL
     },
-    function (accessToken, refreshToken, extraParams, profile, done) {
-      console.log('accessToken: ', accessToken)
-      console.log('refreshToken: ', refreshToken)
+    function (token, tokenSecret, profile, done) {
+      console.log('token: ', token);
+      console.log('tokenSecret: ', tokenSecret);
       // accessToken is the token to call Auth0 API (not needed in the most cases)
       // extraParams.id_token has the JSON Web Token
       // profile has all the information from the user

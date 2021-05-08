@@ -1,5 +1,5 @@
 {
-  "name": "auth0.lab",
+  "name": "twitter.auth0.lab",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -15,6 +15,6 @@
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
     "passport": "^0.4.1",
-    "passport-auth0": "^1.4.0"
+    "passport-twitter": "^1.0.4"
   }
 }
